@@ -73,7 +73,12 @@ form {
                 margin-top: 5px;
                 padding: 5px 5px 5px 20px;
                 font-family: "Karla", sans-serif;
+            }
+            /* when input is selected */
 
+             input:focus {
+                /* change background to red */
+                background: rgb(219, 219, 253);
             }
 
             button {
@@ -85,7 +90,17 @@ form {
                 font-weight: 800;
                 font-size: 1.1rem;
                 border-radius: 20px;
-                border: none;
+                border: 1.5px solid black;
                 font-family: "Karla", sans-serif;
 
+            }
+
+            button:hover {
+                cursor: pointer;
+                color: pink;
+            }
+
+            button:active {
+                background: linear-gradient(90deg, #A626D3 1.18%, #672280 100%);
+                color: red;
             }
