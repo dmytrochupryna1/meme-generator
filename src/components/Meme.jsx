@@ -1,4 +1,7 @@
 export default function Meme() {
+    function handleMouseOver(e) {
+        console.log('Mouse over event triggered')
+    }
     return (
         <>
         {/* 
@@ -17,7 +20,7 @@ export default function Meme() {
                     <input type="text" placeholder="And take my money" />
                 </div>
             </div>
-            <button>Get a new meme 🖼</button>
+            <button onMouseOver={handleMouseOver}>Get a new meme 🖼</button>
         </form>
         </>
     )
