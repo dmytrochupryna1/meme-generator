@@ -1,4 +1,5 @@
 import memesData from '../memesData.jsx'
+import { useState } from 'react'
  
 
 
@@ -6,22 +7,26 @@ import memesData from '../memesData.jsx'
 
 export default function Meme() {
 
-    function getRandomUrl() { // function to get a random meme url
-        const randomIndex = Math.floor(Math.random() * memesData.data.memes.length)
-        return memesData.data.memes[randomIndex].url
+    const [memeImage, setMemeImage] = useState('') // state to store the meme image url
+
+    function getMemeImage() { // function to get a random meme url
+        const memesArray = memesData.data.memes
+        const randomIndex = Math.floor(Math.random() *  memesArray.length)
+        const randomMeme = memesArray[randomIndex].url
+        setMemeImage(randomMeme)
+        return randomMeme
     }
     function handleMouseClick(e) { // function to handle the button click
         e.preventDefault() // prevent the form from submitting
-        console.log(getRandomUrl())
+        console.log(getMemeImage())
     }
-
 
     return ( // return the form
         <>
         <form>
             <div className="top-form">
                 <div className="toptext">
-                    <p className="labeltext">Top text</p>
+                    <p className="labelte   t">Top text</p>
                     <input type="text" placeholder="Shut up" />
                 </div>
                 <div className="bottomtext">
@@ -30,6 +35,7 @@ export default function Meme() {
                 </div>
             </div>
             <button onClick={handleMouseClick}>Get a new meme 🖼</button>
+            <img className="meme-image" src={memeImage}/>
         </form>
         </>
     )
