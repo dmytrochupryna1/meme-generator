@@ -1,0 +1,15 @@
+body {
+    margin: 0
+}
+
+.header {
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+            .header--left {
+                display: flex;   
+                align-items: center; 
+            }
