@@ -72,6 +72,12 @@ export default function Meme() {
                 {memeData.topText && <h2 className='meme-text top'>{memeData.topText}</h2>}
                 {memeData.bottomText && <h2 className='meme-text bottom'>{memeData.bottomText}</h2>}            
 </div>
+        <p 
+            className="download"
+            onClick={() => {
+                console.log('Download')
+            }}
+            >Download</p>
         </form>
         </>
     )
