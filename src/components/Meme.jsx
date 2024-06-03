@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react'
 
 
 export default function Meme() {
+
+
     const [memeData, setMemeData] = useState({
         topText: '',
         bottomText: '',
@@ -23,6 +25,7 @@ export default function Meme() {
     }
 
     useEffect(() => { // fetch and store all the memes from "https://api.imgflip.com/get_memes"
+        console.log('effect ran...')
         fetch('https://api.imgflip.com/get_memes')
             .then(response => response.json())
             .then(data => {
@@ -30,8 +33,10 @@ export default function Meme() {
             })
     }, [])
 
+    console.log(`current meme is ${memeData.url}`)
 
-    function getMemeImage() { // function to get a random meme url
+
+    function getMemeImage() { // function to get a random meme url and set it to memeData state
         // const memesArray = memesData.data.memes
         const randomIndex = Math.floor(Math.random() *  allMemes.length)
         const randomMeme = allMemes[randomIndex].url
@@ -43,7 +48,7 @@ export default function Meme() {
 
     function handleMouseClick(e) { // function to handle the button click
         e.preventDefault() // prevent the form from submitting
-        console.log(getMemeImage())
+        getMemeImage()
     }
 
     return ( // return the form
