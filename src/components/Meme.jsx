@@ -1,11 +1,12 @@
 import memesData from '../memesData.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
  
 
 
 
 
 export default function Meme() {
+    console.log('Meme component running...')
 
     const [memeData, setMemeData] = useState({
         topText: '',
@@ -13,7 +14,7 @@ export default function Meme() {
         url: 'https://i.imgflip.com/1ihzfe.jpg'
     }) 
 
-    // top text and bottom text must be added to the memeData object onChange of the input fields
+    const [allMemes, setAllMemes] = useState([]) // state to store all the memes
 
     function handleChange(e) { // function to handle the input change
         const {name, value} = e.target
@@ -23,13 +24,20 @@ export default function Meme() {
 
     }
 
-
+    useEffect(() => { // fetch and store all the memes from "https://api.imgflip.com/get_memes"
+        console.log('useEffect running...')
+        fetch('https://api.imgflip.com/get_memes')
+            .then(response => response.json())
+            .then(data => {
+                setAllMemes(data.data.memes)
+            })
+    }, [])
 
 
     function getMemeImage() { // function to get a random meme url
-        const memesArray = memesData.data.memes
-        const randomIndex = Math.floor(Math.random() *  memesArray.length)
-        const randomMeme = memesArray[randomIndex].url
+        // const memesArray = memesData.data.memes
+        const randomIndex = Math.floor(Math.random() *  allMemes.length)
+        const randomMeme = allMemes[randomIndex].url
         setMemeData(prevMemeImage => {
             return {...prevMemeImage, url: randomMeme}
         })
@@ -72,12 +80,6 @@ export default function Meme() {
                 {memeData.topText && <h2 className='meme-text top'>{memeData.topText}</h2>}
                 {memeData.bottomText && <h2 className='meme-text bottom'>{memeData.bottomText}</h2>}            
 </div>
-        <p 
-            className="download"
-            onClick={() => {
-                console.log('Download')
-            }}
-            >Download</p>
         </form>
         </>
     )
