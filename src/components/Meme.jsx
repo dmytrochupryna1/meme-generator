@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react'
 
 
 export default function Meme() {
-    console.log('Meme component running...')
-
     const [memeData, setMemeData] = useState({
         topText: '',
         bottomText: '',
@@ -25,7 +23,6 @@ export default function Meme() {
     }
 
     useEffect(() => { // fetch and store all the memes from "https://api.imgflip.com/get_memes"
-        console.log('useEffect running...')
         fetch('https://api.imgflip.com/get_memes')
             .then(response => response.json())
             .then(data => {
