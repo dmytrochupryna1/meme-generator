@@ -1,4 +1,3 @@
-import memesData from '../memesData.jsx'
 import { useState, useEffect } from 'react'
  
 
